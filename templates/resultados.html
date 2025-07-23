@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/resultados.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🧾 Resultados - {{ metodo.replace("_", " ").title() }}</h1>
+        {% if metodo == 'runge_kutta' %}
+            <h3>f(t, y) = {{ funcion }}</h3>
+            <table class="tabla-rk">
+                <tr><th>t</th><th>y</th></tr>
+                {% for i in range(t|length) %}
+                    <tr><td>{{ t[i] }}</td><td>{{ y[i] }}</td></tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h3>f(x) = {{ funcion }}</h3>
+            <p><strong>Raíz encontrada:</strong> {{ raiz }}</p>
+        {% endif %}
+        <div class="volver">
+            <a href="/">Volver</a>
+        </div>
+    </div>
+</body>
+</html>
